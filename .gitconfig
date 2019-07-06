@@ -1,0 +1,50 @@
+[color]
+	diff = auto
+	grep = auto
+	status = auto
+[core]
+	editor = vim
+	pager = less -r -F
+[user]
+	email = david.stelter@gmail.com
+	name = David Stelter
+[alias]
+	st = status -s
+	ap = add -p
+	br = branch --color
+	co = checkout
+	gren = !git --no-pager grep -in --color
+	brname = !git branch | grep '*' | cut -f2 -d' '
+	ff = !git merge --ff-only origin/`git brname`
+	ass = add
+	graph = log --graph --pretty=oneline --abbrev-commit --decorate
+	amend = commit --amend
+	br-remember = !export LASTBRANCH=`git brname`
+	br-memo = br-remember
+	br-last = !echo $LASTBRANCH
+	merge-last = !git merge `git br-last`
+	whatsnew = !PAGER=cat git diff HEAD origin/`git brname` --name-status
+	newlog = !PAGER=cat git log HEAD..origin/`git brname`
+	newdiff = !PAGER=cat git diff --color HEAD origin/`git brname`
+	dc = diff --pager=cat --color
+	contains = branch --color --contains
+	last = log -n 1 --pretty=oneline
+	pul = pull
+	pl = pull
+	pushit = push origin HEAD
+	merged-remote = ! git branch -r --no-color --merge | sed 's/^.*origin\\///'
+	wdiff = diff --word-diff-regex='[[:alnum:]]+|[^[:space:]]'
+	whenadded = log --diff-filter=A --format=format:%at --
+	pop = stash pop
+	whatadded = log --diff-filter=A
+	head = rev-parse --short HEAD
+	stash-diff = stash show -p
+	ctags = !.git/hooks/ctags
+	phead = push origin HEAD
+
+[init]
+	templatedir = ~/.git_template
+[showbranch]
+	default = --topo-order
+	default = heads/*
+
